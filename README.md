@@ -361,30 +361,7 @@ git commit -m 'feat: add AmazingFeature'
 git push origin feature/AmazingFeature
 
 # 5. Open a Pull Request
-```
-
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
-
----
-
-## 📄 License
-
-Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for more information.
-
----
-
-## 📬 Contact
-
-<div align="center">
-
-**Your Name** — [@yourtwitter](https://twitter.com/yourtwitter) — your@email.com
-
-**Project Link:** [https://github.com/yourusername/notecode](https://github.com/yourusername/notecode)
-
-</div>
-
----
-
+``
 <div align="center">
 
 ### ⭐ Star this repo if you found it useful!
