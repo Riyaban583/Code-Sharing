@@ -51,7 +51,7 @@ const CommandPalette = () => {
               autoFocus
               type="text" 
               placeholder="Type a command or search..."
-              className="w-full bg-transparent border-none focus:outline-none text-white px-3 py-4 text-sm"
+              className="w-full bg-transparent border-none focus:outline-none text-foreground px-3 py-4 text-sm"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />

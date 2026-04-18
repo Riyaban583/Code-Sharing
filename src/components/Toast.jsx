@@ -23,17 +23,17 @@ const ToastContainer = () => {
             initial={{ opacity: 0, y: 20, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
-            className={`flex items-center gap-3 px-4 py-3 min-w-[300px] glass-panel border border-glassBorder shadow-lg ${
-              toast.type === 'error' ? 'bg-red-950/40 border-red-500/20' : 
-              toast.type === 'success' ? 'bg-green-950/40 border-green-500/20' : 
-              'bg-secondary/60'
+            className={`flex items-center gap-3 px-4 py-3 min-w-[300px] glass-panel border shadow-lg ${
+              toast.type === 'error' ? 'bg-red-50/90 border-red-200' : 
+              toast.type === 'success' ? 'bg-green-50/90 border-green-200' : 
+              'bg-white/90 border-purple-200'
             }`}
           >
             {getIcon(toast.type)}
-            <p className="text-sm font-medium text-white flex-1">{toast.message}</p>
+            <p className="text-sm font-medium text-foreground flex-1">{toast.message}</p>
             <button 
               onClick={() => removeToast(toast.id)}
-              className="text-mutedForeground hover:text-white transition-colors"
+              className="text-mutedForeground hover:text-primary transition-colors"
             >
               <X size={16} />
             </button>

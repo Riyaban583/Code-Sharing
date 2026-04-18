@@ -44,7 +44,7 @@ const ControlPanel = () => {
         
         <button 
           onClick={resetSnippet}
-          className="flex items-center gap-1.5 text-mutedForeground hover:text-white px-2 py-1 rounded-md hover:bg-white/10 transition-colors ml-2"
+          className="flex items-center gap-1.5 text-mutedForeground hover:text-primary px-2 py-1 rounded-md hover:bg-black/5 transition-colors ml-2"
         >
           <RefreshCcw size={14} />
           Reset
@@ -54,21 +54,21 @@ const ControlPanel = () => {
       <div className="flex items-center gap-1 bg-secondary/30 p-1 rounded-lg border border-glassBorder">
         <button 
           onClick={() => setViewMode('editor')}
-          className={`px-3 py-1 rounded-md flex items-center gap-2 text-xs transition-colors ${viewMode === 'editor' ? 'bg-secondary text-white shadow-sm' : 'text-mutedForeground hover:text-white'}`}
+          className={`px-3 py-1 rounded-md flex items-center gap-2 text-xs transition-colors ${viewMode === 'editor' ? 'bg-white shadow-sm text-primary font-medium' : 'text-mutedForeground hover:text-primary'}`}
         >
           <Layout size={14} />
           Editor
         </button>
         <button 
           onClick={() => setViewMode('split')}
-          className={`px-3 py-1 rounded-md flex items-center gap-2 text-xs transition-colors ${viewMode === 'split' ? 'bg-secondary text-white shadow-sm' : 'text-mutedForeground hover:text-white'}`}
+          className={`px-3 py-1 rounded-md flex items-center gap-2 text-xs transition-colors ${viewMode === 'split' ? 'bg-white shadow-sm text-primary font-medium' : 'text-mutedForeground hover:text-primary'}`}
         >
           <Columns size={14} />
           Split
         </button>
         <button 
           onClick={() => setViewMode('preview')}
-          className={`px-3 py-1 rounded-md flex items-center gap-2 text-xs transition-colors ${viewMode === 'preview' ? 'bg-secondary text-white shadow-sm' : 'text-mutedForeground hover:text-white'}`}
+          className={`px-3 py-1 rounded-md flex items-center gap-2 text-xs transition-colors ${viewMode === 'preview' ? 'bg-white shadow-sm text-primary font-medium' : 'text-mutedForeground hover:text-primary'}`}
         >
           <Layout size={14} className="rotate-90" />
           Preview

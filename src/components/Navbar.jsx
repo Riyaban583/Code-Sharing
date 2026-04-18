@@ -15,10 +15,10 @@ const Navbar = () => {
           <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold shadow-[0_0_15px_rgba(59,130,246,0.5)] group-hover:shadow-[0_0_25px_rgba(139,92,246,0.6)] transition-all">
             N
           </div>
-          <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">NoteCode</span>
+          <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">NoteCode</span>
         </Link>
         <div className="h-6 w-px bg-glassBorder mx-2"></div>
-        <Link to="/gallery" className="flex items-center gap-2 text-sm text-mutedForeground hover:text-white transition-colors">
+        <Link to="/gallery" className="flex items-center gap-2 text-sm text-foreground hover:text-primary transition-colors font-medium">
           <Grid3X3 size={16} />
           Gallery
         </Link>

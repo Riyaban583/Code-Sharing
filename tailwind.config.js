@@ -23,15 +23,15 @@ export default {
         border: 'var(--border)',
         input: 'var(--input)',
         ring: 'var(--ring)',
-        glass: 'rgba(255, 255, 255, 0.05)',
-        glassBorder: 'rgba(255, 255, 255, 0.1)',
+        glass: 'rgba(255, 255, 255, 0.6)',
+        glassBorder: 'rgba(147, 51, 234, 0.2)',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'glass-gradient': 'linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%)',
+        'glass-gradient': 'linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.3) 100%)',
       },
       boxShadow: {
-        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
+        'glass': '0 8px 32px 0 rgba(147, 51, 234, 0.1)',
       },
       backdropBlur: {
         'glass': '12px',

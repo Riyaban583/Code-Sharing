@@ -45,11 +45,11 @@ const AIPanel = () => {
           <div className="flex items-center justify-between p-4 border-b border-glassBorder bg-secondary/50">
             <div className="flex items-center gap-2 text-accent">
               <Sparkles size={18} />
-              <h3 className="font-semibold text-white">AI Assistant</h3>
+              <h3 className="font-semibold text-purple-900">AI Assistant</h3>
             </div>
             <button 
               onClick={toggleAIPanel}
-              className="p-1 hover:bg-white/10 rounded-md text-mutedForeground hover:text-white transition-colors"
+              className="p-1 hover:bg-black/5 rounded-md text-mutedForeground hover:text-primary transition-colors"
             >
               <X size={18} />
             </button>
