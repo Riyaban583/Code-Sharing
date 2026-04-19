@@ -1267,13 +1267,6 @@ gantt
 - [ ] 📂 **Multi-file Snippets** — Share full mini-projects
 
 ---
-
-## 📄 License
-
-Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for the full text.
-
----
-
 ## 🙏 Acknowledgements
 
 - [Monaco Editor](https://microsoft.github.io/monaco-editor/) — The heart of NoteCode's editing experience
@@ -1284,30 +1277,6 @@ Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for the full tex
 - [Zustand](https://github.com/pmndrs/zustand) — Painless state management
 - [capsule-render](https://github.com/kyechan99/capsule-render) — Animated README banners
 - [Shields.io](https://shields.io/) — Beautiful README badges
-
----
-
-## 📬 Contact & Support
-
-<div align="center">
-
-| Channel | Link |
-|---------|------|
-| 🐛 Bug Reports | [GitHub Issues](https://github.com/yourusername/notecode/issues) |
-| 💡 Discussions | [GitHub Discussions](https://github.com/yourusername/notecode/discussions) |
-| 📧 Email | notecode@yourdomain.com |
-| 🐦 Twitter / X | [@yourhandle](https://twitter.com/yourhandle) |
-| 💬 Discord | [Join Server](https://discord.gg/yourserver) |
-
-<br/>
-
-**Made with ❤️ and ☕ by [Your Name](https://github.com/yourusername)**
-
-<br/>
-
-### ⭐ Star this repo if NoteCode helped you — it means everything!
-
-</div>
 
 ---
 
