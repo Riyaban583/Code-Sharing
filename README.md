@@ -142,8 +142,7 @@ NoteCode was born out of one frustration — **sharing code in chats, emails, an
 | 👨‍💻 **Developers** | Share code in PRs, Slack, Discord, Stack Overflow answers |
 | 🎓 **Students** | Submit homework, share solutions, ask for help |
 | 👩‍🏫 **Teachers** | Create example snippets for students to fork and modify |
-| 🧑‍💼 **Interview Candidates** | Live code in interviews with the interviewer watching in real time |
-| ✍️ **Technical Writers** | Embed live, editable code examples in blog posts |
+| 🧑‍💼 **Interview Candidates** | Live code in interviews with the interviewer watching in real time 
 
 ---
 
