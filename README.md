@@ -469,7 +469,7 @@ sequenceDiagram
     participant G as 🔀 API Gateway
     participant C as ⚡ Redis Cache
     participant S as 🔧 Node.js Server
-    participant D as 🗄️ MongoDB
+  
 
     Note over U,D: Creating a Snippet
 
