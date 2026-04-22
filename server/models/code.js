@@ -10,4 +10,6 @@ const codeSchema = new mongoose.Schema({
   }
 });
 
+codeSchema.index({ createdAt: -1 });
+
 export default mongoose.model("Code", codeSchema);
