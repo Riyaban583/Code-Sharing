@@ -38,8 +38,8 @@ const LivePreview = () => {
   const refreshPreview = () => setKey(prev => prev + 1);
 
   return (
-    <div className="flex flex-col h-full bg-white dark:bg-zinc-950 rounded-lg overflow-hidden border border-glassBorder shadow-inner relative">
-      <div className="h-10 bg-secondary/30 border-b border-glassBorder flex items-center justify-between px-3">
+    <div className="flex flex-col h-full bg-black/20 backdrop-blur-sm rounded-lg overflow-hidden border border-glassBorder shadow-inner relative">
+      <div className="h-10 bg-black/40 border-b border-glassBorder flex items-center justify-between px-3">
         <div className="flex space-x-2">
           <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
           <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>

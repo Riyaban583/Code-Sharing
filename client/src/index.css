@@ -3,22 +3,22 @@
 
 @layer base {
   :root {
-    --background: #fdfafb;
-    --foreground: #2e1065;
-    --card: #ffffff;
-    --card-foreground: #3b0764;
-    --primary: #9333ea;
+    --background: #09090b;
+    --foreground: #f8fafc;
+    --card: #18181b;
+    --card-foreground: #f8fafc;
+    --primary: #a855f7;
     --primary-foreground: #ffffff;
-    --secondary: #f3e8ff;
-    --secondary-foreground: #6b21a8;
-    --muted: #fbf7ff;
-    --muted-foreground: #7e22ce;
-    --accent: #d8b4fe;
+    --secondary: #27272a;
+    --secondary-foreground: #f8fafc;
+    --muted: #27272a;
+    --muted-foreground: #a1a1aa;
+    --accent: #ec4899;
     --accent-foreground: #ffffff;
-    --border: #e9d5ff;
-    --input: #ffffff;
+    --border: #27272a;
+    --input: #18181b;
     --ring: #a855f7;
-    --radius: 0.5rem;
+    --radius: 0.75rem;
   }
 
   * {
@@ -26,27 +26,58 @@
   }
 
   body {
-    @apply bg-background text-foreground antialiased min-h-screen selection:bg-primary/30;
+    @apply bg-background text-foreground antialiased min-h-screen selection:bg-primary/30 relative;
     font-feature-settings: "rlig" 1, "calt" 1;
-    background-image: url('/bg.png');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    overflow-x: hidden;
+  }
+
+  @keyframes blob {
+    0% { transform: translate(0px, 0px) scale(1); }
+    33% { transform: translate(50px, -50px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+    100% { transform: translate(0px, 0px) scale(1); }
+  }
+
+  body::before, body::after {
+    content: '';
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    z-index: -1;
+    pointer-events: none;
+    animation: blob 20s infinite alternate;
+  }
+  
+  body::before {
+    top: -10%;
+    left: -10%;
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, rgba(168,85,247,0.15) 0%, rgba(0,0,0,0) 70%);
+  }
+  
+  body::after {
+    bottom: -10%;
+    right: -10%;
+    width: 50vw;
+    height: 50vw;
+    background: radial-gradient(circle, rgba(236,72,153,0.15) 0%, rgba(0,0,0,0) 70%);
+    animation-delay: -10s;
   }
 }
 
 @layer utilities {
   .glass-panel {
-    @apply bg-white/60 backdrop-blur-md border border-purple-200/50 shadow-[0_8px_32px_0_rgba(147,51,234,0.1)] rounded-xl;
+    @apply bg-black/40 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] rounded-2xl;
   }
   
   .glass-button {
-    @apply relative overflow-hidden transition-all duration-300 shadow-[0_4px_15px_rgba(147,51,234,0.15)] bg-white/80 border border-purple-200/50 hover:shadow-[0_4px_20px_rgba(147,51,234,0.3)] hover:border-primary/50 text-purple-900;
+    @apply relative overflow-hidden transition-all duration-300 shadow-[0_4px_15px_rgba(168,85,247,0.2)] bg-white/5 border border-white/10 hover:shadow-[0_4px_20px_rgba(168,85,247,0.4)] hover:border-primary/50 text-white backdrop-blur-md;
   }
   
   .glass-button::after {
     content: '';
-    @apply absolute inset-0 bg-primary/10 opacity-0 transition-opacity duration-300;
+    @apply absolute inset-0 bg-primary/20 opacity-0 transition-opacity duration-300 pointer-events-none;
   }
   
   .glass-button:hover::after {
@@ -69,14 +100,14 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(243, 232, 255, 0.5); 
+  background: rgba(39, 39, 42, 0.5); 
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(147, 51, 234, 0.4); 
+  background: rgba(168, 85, 247, 0.4); 
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(147, 51, 234, 0.7); 
+  background: rgba(168, 85, 247, 0.7); 
 }
