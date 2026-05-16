@@ -9,7 +9,7 @@ const Navbar = () => {
   const { toggleAIPanel, setShareModalOpen } = useUiStore();
 
   return (
-    <nav className="h-16 border-b border-glassBorder bg-glass backdrop-blur-glass flex items-center justify-between px-6 sticky top-0 z-50">
+    <nav className="h-16 border-b border-white/5 bg-black/20 backdrop-blur-xl flex items-center justify-between px-6 sticky top-0 z-50 shadow-sm shadow-black/20">
       <div className="flex items-center gap-4">
         <Link to="/" className="flex items-center gap-2 group">
           <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold shadow-[0_0_15px_rgba(59,130,246,0.5)] group-hover:shadow-[0_0_25px_rgba(139,92,246,0.6)] transition-all">

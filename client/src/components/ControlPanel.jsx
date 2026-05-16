@@ -24,10 +24,10 @@ const ControlPanel = () => {
         <select 
           value={language}
           onChange={(e) => setLanguage(e.target.value)}
-          className="bg-secondary/50 border border-glassBorder rounded-md px-2 py-1 outline-none text-foreground cursor-pointer focus:border-primary/50 transition-colors"
+          className="bg-black/40 border border-glassBorder rounded-md px-2 py-1 outline-none text-white cursor-pointer focus:border-primary/50 transition-colors"
         >
           {languages.map(l => (
-            <option key={l.id} value={l.id}>{l.name}</option>
+            <option key={l.id} value={l.id} className="bg-background">{l.name}</option>
           ))}
         </select>
 
@@ -36,39 +36,39 @@ const ControlPanel = () => {
         <select 
           value={theme}
           onChange={(e) => setTheme(e.target.value)}
-          className="bg-secondary/50 border border-glassBorder rounded-md px-2 py-1 outline-none text-foreground cursor-pointer focus:border-primary/50 transition-colors"
+          className="bg-black/40 border border-glassBorder rounded-md px-2 py-1 outline-none text-white cursor-pointer focus:border-primary/50 transition-colors"
         >
-          <option value="vs-dark">VS Dark</option>
-          <option value="light">Light</option>
+          <option value="vs-dark" className="bg-background">VS Dark</option>
+          <option value="light" className="bg-background">Light</option>
         </select>
         
         <button 
           onClick={resetSnippet}
-          className="flex items-center gap-1.5 text-mutedForeground hover:text-primary px-2 py-1 rounded-md hover:bg-black/5 transition-colors ml-2"
+          className="flex items-center gap-1.5 text-mutedForeground hover:text-white px-2 py-1 rounded-md hover:bg-black/20 transition-colors ml-2"
         >
           <RefreshCcw size={14} />
           Reset
         </button>
       </div>
 
-      <div className="flex items-center gap-1 bg-secondary/30 p-1 rounded-lg border border-glassBorder">
+      <div className="flex items-center gap-1 bg-black/20 p-1 rounded-lg border border-glassBorder">
         <button 
           onClick={() => setViewMode('editor')}
-          className={`px-3 py-1 rounded-md flex items-center gap-2 text-xs transition-colors ${viewMode === 'editor' ? 'bg-white shadow-sm text-primary font-medium' : 'text-mutedForeground hover:text-primary'}`}
+          className={`px-3 py-1 rounded-md flex items-center gap-2 text-xs transition-colors ${viewMode === 'editor' ? 'bg-black/60 shadow-inner border border-white/5 text-primary font-medium' : 'text-mutedForeground hover:text-white'}`}
         >
           <Layout size={14} />
           Editor
         </button>
         <button 
           onClick={() => setViewMode('split')}
-          className={`px-3 py-1 rounded-md flex items-center gap-2 text-xs transition-colors ${viewMode === 'split' ? 'bg-white shadow-sm text-primary font-medium' : 'text-mutedForeground hover:text-primary'}`}
+          className={`px-3 py-1 rounded-md flex items-center gap-2 text-xs transition-colors ${viewMode === 'split' ? 'bg-black/60 shadow-inner border border-white/5 text-primary font-medium' : 'text-mutedForeground hover:text-white'}`}
         >
           <Columns size={14} />
           Split
         </button>
         <button 
           onClick={() => setViewMode('preview')}
-          className={`px-3 py-1 rounded-md flex items-center gap-2 text-xs transition-colors ${viewMode === 'preview' ? 'bg-white shadow-sm text-primary font-medium' : 'text-mutedForeground hover:text-primary'}`}
+          className={`px-3 py-1 rounded-md flex items-center gap-2 text-xs transition-colors ${viewMode === 'preview' ? 'bg-black/60 shadow-inner border border-white/5 text-primary font-medium' : 'text-mutedForeground hover:text-white'}`}
         >
           <Layout size={14} className="rotate-90" />
           Preview

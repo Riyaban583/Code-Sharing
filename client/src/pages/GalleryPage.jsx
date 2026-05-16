@@ -78,23 +78,24 @@ const GalleryPage = () => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {filteredSnippets.map((snippet) => (
-              <Link to={`/s/${snippet._id}`} key={snippet._id} className="glass-panel group hover:-translate-y-1 transition-all duration-300 block">
-                <div className="p-5 border-b border-glassBorder space-y-4">
+              <Link to={`/s/${snippet._id}`} key={snippet._id} className="glass-panel relative group hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(168,85,247,0.3)] hover:border-primary/50 transition-all duration-300 block">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
+                <div className="p-5 border-b border-glassBorder space-y-4 relative z-10">
                   <div className="flex justify-between items-start">
                     <div>
-                      <h3 className="font-semibold text-lg text-white mb-1 group-hover:text-primary transition-colors line-clamp-1">{snippet.title || 'Untitled Snippet'}</h3>
+                      <h3 className="font-bold text-lg text-white mb-1 group-hover:text-primary transition-colors line-clamp-1">{snippet.title || 'Untitled Snippet'}</h3>
                       <div className="flex items-center gap-2 text-xs text-mutedForeground">
                         <User size={12} />
                         {snippet.author || 'Anonymous'}
                       </div>
                     </div>
-                    <span className="px-2 py-1 bg-secondary/50 rounded text-xs font-mono uppercase tracking-wider text-mutedForeground">
+                    <span className="px-2 py-1 bg-primary/10 border border-primary/20 rounded-md text-xs font-mono uppercase tracking-wider text-primary">
                       {snippet.language || 'web'}
                     </span>
                   </div>
                   
-                  <div className="h-32 bg-secondary/30 rounded-lg border border-glassBorder relative overflow-hidden flex items-center justify-center group-hover:border-primary/30 transition-colors">
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent z-10"></div>
+                  <div className="h-32 bg-black/50 rounded-lg border border-white/5 relative overflow-hidden flex items-center justify-center group-hover:border-primary/30 transition-colors">
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent z-10"></div>
                     <p className="font-mono text-xs text-mutedForeground opacity-70 px-4 whitespace-pre-wrap line-clamp-5 text-left w-full h-full p-4 overflow-hidden">
                       {typeof snippet.code === 'object' 
                         ? (snippet.code.js || snippet.code.html || snippet.code.css || '// No code content') 
@@ -103,7 +104,7 @@ const GalleryPage = () => {
                   </div>
                 </div>
                 
-                <div className="px-5 py-3 flex items-center justify-between text-xs text-mutedForeground bg-black/20">
+                <div className="px-5 py-3 flex items-center justify-between text-xs text-mutedForeground bg-black/40 rounded-b-2xl relative z-10">
                   <span className="flex items-center gap-1.5"><Clock size={12}/> {formatDate(snippet.createdAt)}</span>
                   <div className="flex items-center gap-4">
                     <button className="flex items-center gap-1.5 hover:text-white transition-colors" onClick={(e) => e.preventDefault()}>
