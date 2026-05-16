@@ -26,6 +26,14 @@ export const useEditorStore = create(
         }));
       },
       
+      setFullCode: (fullCodeObject) => {
+        set({
+          code: fullCodeObject,
+          isShared: true,
+          lastSaved: Date.now()
+        });
+      },
+      
       setLanguage: (lang) => set({ language: lang }),
       setTheme: (theme) => set({ theme }),
       

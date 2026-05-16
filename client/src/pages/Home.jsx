@@ -11,15 +11,35 @@ import { useEditorStore } from '../store/useEditorStore';
 import { useUiStore } from '../store/useUiStore';
 
 const Home = () => {
-  const { language } = useEditorStore();
+  const { language, setFullCode } = useEditorStore();
   const { viewMode, isPreviewFullscreen, addToast } = useUiStore();
   const { id } = useParams();
 
   useEffect(() => {
     if (id) {
-      addToast(`Loaded snippet ${id}`, 'success');
+      const fetchSnippet = async () => {
+        try {
+          const response = await fetch(`http://localhost:5000/api/code/${id}`);
+          if (!response.ok) throw new Error("Snippet not found");
+          
+          const data = await response.json();
+          if (data.code && typeof data.code === "object") {
+             setFullCode(data.code);
+             addToast(`Loaded snippet: ${data.title || id}`, 'success');
+          } else if (data.code && typeof data.code === "string") {
+             // Fallback for older strings
+             setFullCode({ html: data.code, css: '', js: '' });
+             addToast(`Loaded snippet: ${data.title || id}`, 'success');
+          }
+        } catch (error) {
+          console.error(error);
+          addToast("Failed to load snippet", "error");
+        }
+      };
+      
+      fetchSnippet();
     }
-  }, [id, addToast]);
+  }, [id, addToast, setFullCode]);
 
   return (
     <div className="flex flex-col h-screen bg-background text-foreground overflow-hidden">
