@@ -8,29 +8,23 @@ dotenv.config();
 
 const app = express();
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Routes
 app.use("/api/code", codeRoutes);
 
-// MongoDB Connection
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB Connected"))
-  .catch((err) => console.log(err));
-
-// Default Route
 app.get("/", (req, res) => {
-  res.send("Backend is running...");
+  res.send("Backend Working Successfully");
 });
 
-// Local server only
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log("MongoDB Connected"))
+  .catch(err => console.log(err));
+
 if (process.env.NODE_ENV !== "production") {
   app.listen(5000, () => {
     console.log("Server running on port 5000");
   });
 }
 
-// Export app for Vercel
 export default app;
