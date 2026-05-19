@@ -3,9 +3,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useUiStore } from '../store/useUiStore';
 import { useEditorStore } from '../store/useEditorStore';
 import { X, Send, Sparkles, Code2, MessageSquare } from 'lucide-react';
-import axios from 'axios';
+import { GoogleGenAI } from "@google/genai";
 
-const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
+const ai = new GoogleGenAI({
+  apiKey: import.meta.env.VITE_GEMINI_API_KEY,
+});
 
 const AIPanel = () => {
   const { isAIPanelOpen, toggleAIPanel } = useUiStore();
@@ -29,44 +31,43 @@ const AIPanel = () => {
 
       if (!input.trim() || isTyping) return;
 
+      const currentInput = input;
+
       const userMessage = {
         id: Date.now(),
         role: 'user',
-        content: input
+        content: currentInput
       };
 
       setMessages((prev) => [...prev, userMessage]);
-
-      const currentInput = input;
-
       setInput('');
       setIsTyping(true);
 
       try {
-        const response = await axios.post(
-          `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`,
-          {
-            contents: [
-              {
-                parts: [
-                  {
-                    text: `You are a ${language} coding assistant.\n\nUser: ${currentInput}`
-                  }
-                ]
-              }
-            ]
+        const result = await ai.models.generateContent({
+          model: "gemini-2.5-flash",
+          contents: [
+            {
+              role: "user",
+              parts: [
+                {
+                  text: `You are a ${language} coding assistant.
+
+User Query:
+${currentInput}
+
+Provide helpful coding answers clearly.`
+                }
+              ]
+            }
+          ],
+          config: {
+            temperature: 0.7,
           },
-          {
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            timeout: 10000
-          }
-        );
+        });
 
         const aiReply =
-          response.data?.candidates?.[0]?.content?.parts?.[0]?.text ||
-          'No response generated';
+          result?.text || "No response generated.";
 
         setMessages((prev) => [
           ...prev,
@@ -76,16 +77,26 @@ const AIPanel = () => {
             content: aiReply
           }
         ]);
-      } catch (error) {
-        let errorMessage = 'Error connecting to Gemini API';
 
-        if (error.response?.status === 429) {
+      } catch (error) {
+        console.error("Gemini SDK Error:", error);
+
+        let errorMessage =
+          "⚠️ Error: Unable to fetch response from Gemini.";
+
+        if (error.message?.includes("404")) {
           errorMessage =
-            'Too many requests. Please wait a few seconds and try again.';
-        } else if (error.code === 'ECONNABORTED') {
-          errorMessage = 'Request timeout. Please try again.';
-        } else if (error.response?.status === 401) {
-          errorMessage = 'Invalid Gemini API key.';
+            "⚠️ Error: Model not found.";
+        }
+
+        if (error.message?.includes("429")) {
+          errorMessage =
+            "⚠️ Rate limit exceeded. Try again later.";
+        }
+
+        if (error.message?.includes("401")) {
+          errorMessage =
+            "⚠️ Invalid Gemini API Key.";
         }
 
         setMessages((prev) => [
@@ -97,7 +108,6 @@ const AIPanel = () => {
           }
         ]);
 
-        console.error('Gemini API Error:', error);
       } finally {
         setIsTyping(false);
       }
@@ -122,7 +132,11 @@ const AIPanel = () => {
               : 'bg-primary/20 text-primary'
           }`}
         >
-          {isAssistant ? <Code2 size={14} /> : <MessageSquare size={14} />}
+          {isAssistant ? (
+            <Code2 size={14} />
+          ) : (
+            <MessageSquare size={14} />
+          )}
         </div>
 
         <div
@@ -145,13 +159,16 @@ const AIPanel = () => {
           initial={{ x: 400, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           exit={{ x: 400, opacity: 0 }}
-          transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+          transition={{
+            type: 'spring',
+            damping: 25,
+            stiffness: 200
+          }}
           className="fixed top-20 right-4 w-80 lg:w-96 bottom-4 z-40 flex flex-col glass-panel overflow-hidden border-l border-t border-glassBorder shadow-[0_8px_32px_rgba(139,92,246,0.15)]"
         >
           <div className="flex items-center justify-between p-4 border-b border-glassBorder bg-secondary/50">
             <div className="flex items-center gap-2 text-accent">
               <Sparkles size={18} />
-
               <h3 className="font-semibold text-purple-900">
                 AI Assistant
               </h3>
@@ -176,9 +193,7 @@ const AIPanel = () => {
 
                 <div className="p-4 rounded-2xl bg-secondary/50 flex space-x-1">
                   <div className="w-2 h-2 bg-accent/50 rounded-full animate-bounce" />
-
                   <div className="w-2 h-2 bg-accent/50 rounded-full animate-bounce delay-150" />
-
                   <div className="w-2 h-2 bg-accent/50 rounded-full animate-bounce delay-300" />
                 </div>
               </div>
