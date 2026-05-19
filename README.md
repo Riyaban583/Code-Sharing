@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div align="center">
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=220&section=header&text=NoteCode&fontSize=90&fontColor=fff&animation=twinkling&fontAlignY=38&desc=Write%20·%20Customize%20·%20Share%20Code%20Instantly&descAlignY=60&descSize=20&descColor=ffffff" width="100%" />
@@ -1294,3 +1295,6 @@ Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for the full tex
 <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=120&section=footer&animation=twinkling" width="100%" />
 
 </div>
+=======
+# Code-Sharing
+>>>>>>> d287a11ab49ec219e85936736ef15cd32343161b
