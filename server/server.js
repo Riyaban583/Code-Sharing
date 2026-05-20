@@ -17,14 +17,17 @@ app.get("/", (req, res) => {
   res.send("Backend Working Successfully");
 });
 
+// MongoDB Connection
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log(err));
 
-if (process.env.NODE_ENV !== "production") {
-  app.listen(5000, () => {
-    console.log("Server running on port 5000");
-  });
-}
+// PORT
+const PORT = process.env.PORT || 5000;
+
+// Start Server
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 
 export default app;
