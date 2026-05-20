@@ -1,4 +1,4 @@
-import Code from "../models/Code.js";
+import Code from "../models/code.js";
 
 // Save code
 export const saveCode = async (req, res) => {
