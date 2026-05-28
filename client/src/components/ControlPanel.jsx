@@ -3,13 +3,17 @@ import {
   Layout,
   Columns,
   RefreshCcw,
-  Code2
+  Code2,
+  Sparkles
 } from "lucide-react";
+
+import { motion } from "framer-motion";
 
 import { useEditorStore } from "../store/useEditorStore";
 import { useUiStore } from "../store/useUiStore";
 
 const ControlPanel = () => {
+
   const {
     language,
     setLanguage,
@@ -37,21 +41,33 @@ const ControlPanel = () => {
   const isDark = theme === "vs-dark";
 
   return (
-    <div
-      className={`h-16 px-6 flex items-center justify-between border-b ${
+
+    <motion.div
+      initial={{ y: -40, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.7 }}
+      className={`relative z-20 h-20 px-6 flex items-center justify-between border-b backdrop-blur-2xl ${
         isDark
-          ? "bg-black border-zinc-800"
-          : "bg-white border-gray-200"
+          ? "bg-black/60 border-orange-500/10"
+          : "bg-white/70 border-orange-200"
       }`}
     >
+
       {/* Left Section */}
-      <div className="flex items-center gap-4">
-        
+      <div className="flex items-center gap-5">
+
         {/* Language Dropdown */}
-        <div className="relative">
+        <motion.div
+          whileHover={{ scale: 1.03 }}
+          className="relative"
+        >
+
+          {/* Glow */}
+          <div className="absolute inset-0 bg-orange-500/10 blur-xl rounded-2xl"></div>
+
           <Code2
-            size={16}
-            className="absolute left-3 top-3 text-orange-500"
+            size={18}
+            className="absolute left-4 top-4 text-orange-500 z-10"
           />
 
           <select
@@ -59,100 +75,148 @@ const ControlPanel = () => {
             onChange={(e) =>
               setLanguage(e.target.value)
             }
-            className={`pl-10 pr-4 py-2 rounded-xl border outline-none text-sm font-medium ${
+            className={`relative z-10 pl-12 pr-6 py-3 rounded-2xl border outline-none text-sm font-semibold transition-all duration-300 backdrop-blur-xl ${
               isDark
-                ? "bg-zinc-900 text-white border-zinc-700"
-                : "bg-gray-50 text-black border-gray-200"
+                ? "bg-zinc-900/80 text-white border-orange-500/20 focus:border-orange-500"
+                : "bg-white text-black border-orange-200"
             }`}
           >
+
             {languages.map((lang) => (
+
               <option
                 key={lang.id}
                 value={lang.id}
               >
                 {lang.name}
               </option>
+
             ))}
+
           </select>
-        </div>
+
+        </motion.div>
 
         {/* Reset Button */}
-        <button
+        <motion.button
+          whileHover={{
+            scale: 1.05,
+            boxShadow: "0px 0px 20px rgba(255,165,0,0.3)"
+          }}
+          whileTap={{
+            scale: 0.95
+          }}
           onClick={resetSnippet}
-          className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm ${
+          className={`flex items-center gap-2 px-5 py-3 rounded-2xl text-sm font-semibold transition-all duration-300 ${
             isDark
-              ? "bg-zinc-900 text-white hover:bg-zinc-800"
+              ? "bg-zinc-900/80 text-white hover:bg-zinc-800 border border-orange-500/10"
               : "bg-gray-100 text-gray-700 hover:bg-gray-200"
           }`}
         >
-          <RefreshCcw size={16} />
+
+          <RefreshCcw size={17} />
+
           Reset
-        </button>
+
+        </motion.button>
+
+        {/* AI Status */}
+        {/* <div className="hidden md:flex items-center gap-2 px-4 py-3 rounded-2xl bg-orange-500/10 border border-orange-500/20">
+
+          <Sparkles
+            size={16}
+            className="text-orange-400"
+          />
+
+          <span className="text-sm text-orange-300 font-medium">
+            AI Ready
+          </span>
+
+        </div> */}
+
       </div>
 
       {/* Right Section */}
       <div
-        className={`flex items-center p-1 rounded-xl ${
+        className={`flex items-center p-1.5 rounded-2xl backdrop-blur-xl ${
           isDark
-            ? "bg-zinc-900"
+            ? "bg-zinc-900/80 border border-orange-500/10"
             : "bg-gray-100"
         }`}
       >
+
         {/* Editor */}
-        <button
+        <motion.button
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.95 }}
           onClick={() =>
             setViewMode("editor")
           }
-          className={`px-4 py-2 rounded-lg flex items-center gap-2 text-sm ${
+          className={`px-5 py-3 rounded-xl flex items-center gap-2 text-sm font-semibold transition-all duration-300 ${
             viewMode === "editor"
-              ? "bg-orange-500 text-white"
+              ? "bg-gradient-to-r from-orange-400 to-orange-600 text-white shadow-[0_0_20px_rgba(255,140,0,0.5)]"
               : isDark
-              ? "text-gray-300"
+              ? "text-gray-300 hover:bg-zinc-800"
               : "text-gray-700"
           }`}
         >
-          <Layout size={16} />
+
+          <Layout size={17} />
+
           Editor
-        </button>
+
+        </motion.button>
 
         {/* Split */}
-        <button
+        <motion.button
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.95 }}
           onClick={() =>
             setViewMode("split")
           }
-          className={`px-4 py-2 rounded-lg flex items-center gap-2 text-sm ${
+          className={`px-5 py-3 rounded-xl flex items-center gap-2 text-sm font-semibold transition-all duration-300 ${
             viewMode === "split"
-              ? "bg-orange-500 text-white"
+              ? "bg-gradient-to-r from-orange-400 to-orange-600 text-white shadow-[0_0_20px_rgba(255,140,0,0.5)]"
               : isDark
-              ? "text-gray-300"
+              ? "text-gray-300 hover:bg-zinc-800"
               : "text-gray-700"
           }`}
         >
-          <Columns size={16} />
+
+          <Columns size={17} />
+
           Split
-        </button>
+
+        </motion.button>
 
         {/* Output */}
-        <button
+        <motion.button
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.95 }}
           onClick={() =>
             setViewMode("preview")
           }
-          className={`px-4 py-2 rounded-lg flex items-center gap-2 text-sm ${
+          className={`px-5 py-3 rounded-xl flex items-center gap-2 text-sm font-semibold transition-all duration-300 ${
             viewMode === "preview"
-              ? "bg-orange-500 text-white"
+              ? "bg-gradient-to-r from-orange-400 to-orange-600 text-white shadow-[0_0_20px_rgba(255,140,0,0.5)]"
               : isDark
-              ? "text-gray-300"
+              ? "text-gray-300 hover:bg-zinc-800"
               : "text-gray-700"
           }`}
         >
+
           <Layout
-            size={16}
+            size={17}
             className="rotate-90"
           />
+
           Output
-        </button>
+
+        </motion.button>
+
       </div>
-    </div>
+
+    </motion.div>
   );
 };
 

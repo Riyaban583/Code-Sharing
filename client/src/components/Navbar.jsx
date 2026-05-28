@@ -5,14 +5,19 @@ import {
   Sparkles,
   Sun,
   Moon,
-  Code2
+  Code2,
+  User,
+  BellDot
 } from "lucide-react";
+
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 import { useEditorStore } from "../store/useEditorStore";
 import { useUiStore } from "../store/useUiStore";
 
 const Navbar = () => {
+
   const { isShared, theme, setTheme } = useEditorStore();
 
   const {
@@ -27,103 +32,223 @@ const Navbar = () => {
   };
 
   return (
-    <nav
-      className={`h-16 sticky top-0 z-50 px-6 flex items-center justify-between border-b ${
+
+    <motion.nav
+      initial={{ y: -80, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8 }}
+      className={`sticky top-0 z-50 px-6 py-4 flex items-center justify-between border-b backdrop-blur-2xl ${
         isDark
-          ? "bg-black border-zinc-800"
-          : "bg-white border-gray-200"
+          ? "bg-black/70 border-orange-500/10"
+          : "bg-white/70 border-orange-200"
       }`}
     >
-      {/* Left */}
-      <div className="flex items-center gap-5">
+
+      {/* Left Section */}
+      <div className="flex items-center gap-8">
+
         {/* Logo */}
         <Link
           to="/"
-          className="flex items-center gap-3"
+          className="flex items-center gap-4 group"
         >
-          <div className="w-10 h-10 rounded-xl bg-orange-500 flex items-center justify-center text-white">
-            <Code2 size={20} />
-          </div>
 
+          {/* Animated Logo */}
+          <motion.div
+            whileHover={{
+              rotate: 10,
+              scale: 1.08
+            }}
+            className="relative w-12 h-12 rounded-2xl bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-white shadow-[0_0_25px_rgba(255,140,0,0.5)]"
+          >
+
+            {/* Glow */}
+            <div className="absolute inset-0 rounded-2xl bg-orange-500 blur-xl opacity-40"></div>
+
+            <Code2 size={24} className="relative z-10" />
+
+          </motion.div>
+
+          {/* Text */}
           <div>
+
             <h1
-              className={`text-lg font-bold ${
+              className={`text-2xl font-black tracking-wide ${
                 isDark
                   ? "text-white"
                   : "text-black"
               }`}
             >
-              NoteCode
+
+              Note
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
+                Code
+              </span>
+
             </h1>
 
-            <p className="text-xs text-orange-500">
-              Online Code Editor
+            <p className="text-xs text-orange-400 tracking-widest uppercase">
+              Futuristic Code Editor
             </p>
+
           </div>
+
         </Link>
 
-        {/* Gallery */}
-        <Link
-          to="/gallery"
-          className={`flex items-center gap-2 text-sm ${
-            isDark
-              ? "text-gray-300 hover:text-orange-400"
-              : "text-gray-700 hover:text-orange-500"
-          }`}
-        >
-          <Grid3X3 size={16} />
-          Gallery
-        </Link>
+        {/* Navigation */}
+        <div className="hidden md:flex items-center gap-4">
+
+          {/* Gallery */}
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+          >
+
+            <Link
+              to="/gallery"
+              className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-all duration-300 ${
+                isDark
+                  ? "text-gray-300 hover:text-orange-400 hover:bg-zinc-900/80"
+                  : "text-gray-700 hover:text-orange-500 hover:bg-orange-50"
+              }`}
+            >
+
+              <Grid3X3 size={18} />
+
+              Gallery
+
+            </Link>
+
+          </motion.div>
+
+          {/* Live Badge */}
+          <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-orange-500/10 border border-orange-500/20">
+
+            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+
+            <span className="text-sm text-orange-300">
+              Live Workspace
+            </span>
+
+          </div>
+
+        </div>
+
       </div>
 
-      {/* Right */}
+      {/* Right Section */}
       <div className="flex items-center gap-3">
-        {/* Theme Toggle (ONLY ONE) */}
-        <button
-          onClick={handleThemeToggle}
-          className={`p-2 rounded-xl ${
+
+        {/* Notifications */}
+        <motion.button
+          whileHover={{
+            scale: 1.08
+          }}
+          whileTap={{
+            scale: 0.95
+          }}
+          className={`p-3 rounded-2xl transition-all duration-300 ${
             isDark
-              ? "bg-zinc-900 text-orange-400"
+              ? "bg-zinc-900/80 text-orange-400 hover:bg-zinc-800"
               : "bg-orange-50 text-orange-600"
           }`}
         >
+
+          <BellDot size={18} />
+
+        </motion.button>
+
+        {/* Theme Toggle */}
+        <motion.button
+          whileHover={{
+            scale: 1.08,
+            rotate: 10
+          }}
+          whileTap={{
+            scale: 0.95
+          }}
+          onClick={handleThemeToggle}
+          className={`p-3 rounded-2xl transition-all duration-300 ${
+            isDark
+              ? "bg-zinc-900/80 text-orange-400 hover:bg-zinc-800"
+              : "bg-orange-50 text-orange-600"
+          }`}
+        >
+
           {isDark ? (
             <Sun size={18} />
           ) : (
             <Moon size={18} />
           )}
-        </button>
+
+        </motion.button>
 
         {/* AI Assistant */}
-        <button
+        <motion.button
+          whileHover={{
+            scale: 1.05,
+            boxShadow: "0px 0px 25px rgba(255,165,0,0.4)"
+          }}
+          whileTap={{
+            scale: 0.95
+          }}
           onClick={toggleAIPanel}
-          className={`px-4 py-2 rounded-xl flex items-center gap-2 ${
+          className={`px-5 py-3 rounded-2xl flex items-center gap-2 transition-all duration-300 font-semibold ${
             isDark
-              ? "bg-zinc-900 text-orange-400"
+              ? "bg-zinc-900/80 text-orange-400 hover:bg-zinc-800"
               : "bg-orange-50 text-orange-600"
           }`}
         >
-          <Sparkles size={16} />
-          AI Assistant
-        </button>
 
-        {/* Share */}
-        <button
+          <Sparkles size={18} />
+
+          AI Assistant
+
+        </motion.button>
+
+        {/* Share Button */}
+        <motion.button
+          whileHover={{
+            scale: 1.05,
+            boxShadow: "0px 0px 30px rgba(255,165,0,0.5)"
+          }}
+          whileTap={{
+            scale: 0.95
+          }}
           onClick={() =>
             setShareModalOpen(true)
           }
           disabled={isShared}
-          className={`px-4 py-2 rounded-xl flex items-center gap-2 text-white ${
+          className={`px-5 py-3 rounded-2xl flex items-center gap-2 text-white font-semibold transition-all duration-300 ${
             isShared
-              ? "bg-gray-400 cursor-not-allowed"
-              : "bg-orange-500 hover:bg-orange-600"
+              ? "bg-gray-500 cursor-not-allowed"
+              : "bg-gradient-to-r from-orange-400 to-orange-600 hover:from-orange-500 hover:to-orange-700"
           }`}
         >
-          <Share2 size={16} />
+
+          <Share2 size={18} />
+
           {isShared ? "Shared" : "Share"}
-        </button>
+
+        </motion.button>
+
+        {/* Profile */}
+        <motion.button
+          whileHover={{
+            scale: 1.08
+          }}
+          whileTap={{
+            scale: 0.95
+          }}
+          className="w-12 h-12 rounded-2xl bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-white shadow-[0_0_20px_rgba(255,140,0,0.4)]"
+        >
+
+          <User size={20} />
+
+        </motion.button>
+
       </div>
-    </nav>
+
+    </motion.nav>
   );
 };
 
