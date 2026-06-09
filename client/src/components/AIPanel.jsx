@@ -299,7 +299,7 @@ Provide clear, developer-friendly, modern coding guidance.`,
             stiffness: 220
           }}
 
-          className={`fixed top-24 right-5 bottom-5 w-[380px] lg:w-[430px] z-40 flex flex-col overflow-hidden rounded-[35px] border backdrop-blur-2xl shadow-[0_0_60px_rgba(255,140,0,0.2)] ${
+          className={`fixed top-24 right-5 h-[80vh] w-[380px] lg:w-[430px] z-40 flex flex-col overflow-hidden rounded-[35px] border backdrop-blur-2xl shadow-[0_0_60px_rgba(255,140,0,0.2)] ${
             isDark
               ? "bg-zinc-950/95 border-orange-500/20"
               : "bg-white border-orange-200"
@@ -381,7 +381,7 @@ Provide clear, developer-friendly, modern coding guidance.`,
           </div>
 
           {/* SUGGESTIONS */}
-          <div className="relative z-10 px-5 py-4 flex flex-wrap gap-2 border-b border-orange-500/10">
+          <div className="relative z-10 px-5 py-3 flex flex-wrap gap-2 border-b border-orange-500/10 shrink-0">
 
             {suggestionPrompts.map(
               (prompt, index) => (
@@ -418,7 +418,7 @@ Provide clear, developer-friendly, modern coding guidance.`,
           </div>
 
           {/* CHAT AREA */}
-          <div className="flex-1 overflow-y-auto p-5 space-y-5 custom-scrollbar">
+          <div className="flex-1 min-h-0 overflow-y-auto p-5 space-y-5 custom-scrollbar">
 
             {messages.map(renderMessage)}
 
@@ -462,7 +462,7 @@ Provide clear, developer-friendly, modern coding guidance.`,
           </div>
 
           {/* INPUT */}
-          <div className="relative z-10 p-4 border-t border-orange-500/10">
+          <div className="relative z-10 p-4 border-t border-orange-500/10 shrink-0">
 
             <form
               onSubmit={handleSubmit}

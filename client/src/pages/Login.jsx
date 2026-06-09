@@ -1,13 +1,17 @@
 import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
+import { useEditorStore } from "../store/useEditorStore";
 
 import {
   useState
 } from "react";
 
 function Login() {
+  const { theme, setTheme } = useEditorStore();
 
   const navigate = useNavigate();
+
+  const isDark = theme === "vs-dark";
 
   const [email, setEmail] =
     useState("");
@@ -83,7 +87,7 @@ function Login() {
         "Login Successful 🚀"
       );
 
-      navigate("/");
+      navigate("/home");
 
     } catch (error) {
 
@@ -103,7 +107,24 @@ function Login() {
 
   return (
 
-    <div className="min-h-screen bg-black flex justify-center items-center overflow-hidden relative px-5 py-10">
+    <div
+  className={`min-h-screen flex justify-center items-center overflow-hidden relative px-5 py-10 transition-all duration-300 ${
+    isDark ? "bg-black" : "bg-gray-100"
+  }`}
+>
+
+   <button
+    onClick={() =>
+      setTheme(
+        theme === "vs-dark"
+          ? "light"
+          : "vs-dark"
+      )
+    }
+    className="absolute top-6 right-6 z-50 px-4 py-2 rounded-xl bg-orange-500 text-white"
+  >
+    {theme === "vs-dark" ? "☀️" : "🌙"}
+  </button>
 
       {/* Background Glow */}
       <div className="absolute w-[600px] h-[600px] bg-orange-500/20 rounded-full blur-3xl top-[-200px] left-[-200px] animate-pulse"></div>
@@ -146,7 +167,11 @@ function Login() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
         whileHover={{ scale: 1.01 }}
-        className="relative z-10 w-full max-w-lg overflow-hidden bg-gradient-to-br from-zinc-900/90 to-black/80 backdrop-blur-2xl border border-orange-500/20 rounded-[35px] p-12 shadow-[0_0_80px_rgba(255,140,0,0.25)]"
+        className={`relative z-10 w-full max-w-lg overflow-hidden backdrop-blur-2xl rounded-[35px] p-12 transition-all duration-300 ${
+  isDark
+    ? "bg-gradient-to-br from-zinc-900/90 to-black/80 border border-orange-500/20 shadow-[0_0_80px_rgba(255,140,0,0.25)]"
+    : "bg-white border border-gray-200 shadow-2xl"
+}`}
       >
 
         {/* Glow */}
@@ -160,7 +185,9 @@ function Login() {
             duration: 0.7,
             type: "spring"
           }}
-          className="relative z-10 text-5xl font-black text-center text-white"
+          className={`relative z-10 text-5xl font-black text-center ${
+  isDark ? "text-white" : "text-gray-900"
+}`}
         >
 
           Welcome Back
@@ -172,7 +199,11 @@ function Login() {
         </motion.h1>
 
         {/* Subtitle */}
-        <p className="relative z-10 text-center text-gray-400 mt-6 leading-10">
+       <p
+  className={`relative z-10 text-center mt-6 leading-10 ${
+    isDark ? "text-gray-400" : "text-gray-600"
+  }`}
+>
           Access your saved code snippets and continue collaborating with developers.
         </p>
 
@@ -204,7 +235,11 @@ function Login() {
 
               required
 
-              className="w-full mt-2 bg-zinc-800/80 text-white px-5 py-4 rounded-2xl outline-none border border-zinc-700 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/30 transition-all duration-300"
+              className={`w-full mt-2 px-5 py-4 rounded-2xl outline-none border transition-all duration-300 ${
+  isDark
+    ? "bg-zinc-800/80 text-white border-zinc-700 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/30"
+    : "bg-white text-black border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20"
+}`}
             />
 
           </div>
@@ -231,7 +266,11 @@ function Login() {
 
               required
 
-              className="w-full mt-2 bg-zinc-800/80 text-white px-5 py-4 rounded-2xl outline-none border border-zinc-700 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/30 transition-all duration-300"
+              className={`w-full mt-2 px-5 py-4 rounded-2xl outline-none border transition-all duration-300 ${
+  isDark
+    ? "bg-zinc-800/80 text-white border-zinc-700 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/30"
+    : "bg-white text-black border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20"
+}`}
             />
 
           </div>
@@ -279,7 +318,11 @@ function Login() {
         {/* Footer */}
         <div className="relative z-10 mt-8 text-center">
 
-          <p className="text-gray-400">
+         <p
+  className={`${
+    isDark ? "text-gray-400" : "text-gray-600"
+  }`}
+>
 
             Don’t have an account?
 
