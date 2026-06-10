@@ -99,18 +99,18 @@ const Home = () => {
       <ControlPanel />
 
       {/* Main Editor Section */}
-      <main className="flex-1 overflow-hidden p-4">
-        <div className="h-full flex gap-4 relative">
+     <main className="flex-1 overflow-y-auto p-2 md:p-4">
+       <div className="h-full flex flex-col lg:flex-row gap-4 relative">
           
           {/* Code Editor */}
           {(viewMode === "editor" ||
             viewMode === "split") &&
             !isPreviewFullscreen && (
               <div
-                className={`h-full rounded-2xl overflow-hidden border shadow-lg ${
-                  viewMode === "split"
-                    ? "w-1/2"
-                    : "w-full"
+               className={`rounded-2xl overflow-hidden border shadow-lg ${
+  viewMode === "split"
+    ? "w-full lg:w-1/2 h-[350px] lg:h-full"
+    : "w-full"
                 } ${
                   isDark
                     ? "bg-black border-orange-500/20"
@@ -126,12 +126,12 @@ const Home = () => {
             viewMode === "split" ||
             isPreviewFullscreen) && (
             <div
-              className={`rounded-2xl overflow-hidden border shadow-lg ${
-                isPreviewFullscreen
-                  ? "fixed inset-4 z-50"
-                  : viewMode === "split"
-                  ? "w-1/2 h-full"
-                  : "w-full h-full"
+             className={`rounded-2xl overflow-hidden border shadow-lg ${
+  isPreviewFullscreen
+    ? "fixed inset-4 z-50"
+    : viewMode === "split"
+    ? "w-full lg:w-1/2 h-[300px] lg:h-full"
+    : "w-full h-full"
               } ${
                 isDark
                   ? "bg-black border-orange-500/20"

@@ -42,7 +42,7 @@ const CodeEditor = ({ language }) => {
       whileHover={{
         scale: 1.005
       }}
-      className={`relative w-full h-full rounded-[30px] overflow-hidden border transition-all duration-300 backdrop-blur-2xl shadow-[0_0_50px_rgba(255,140,0,0.15)] ${
+     className={`relative w-full h-full rounded-[24px] md:rounded-[30px] overflow-hidden border transition-all duration-300 backdrop-blur-2xl shadow-[0_0_50px_rgba(255,140,0,0.15)] ${
         isDark
           ? "bg-zinc-950/90 border-orange-500/20"
           : "bg-white border-orange-200"
@@ -55,14 +55,14 @@ const CodeEditor = ({ language }) => {
       {/* Floating Glow */}
       <div className="absolute top-[-80px] right-[-80px] w-[180px] h-[180px] bg-orange-500/10 blur-3xl rounded-full"></div>
 
-      {/* Header */}
-      <div
-        className={`relative z-10 flex items-center justify-between px-5 py-4 border-b backdrop-blur-xl ${
-          isDark
-            ? "bg-zinc-900/70 border-orange-500/10"
-            : "bg-orange-50 border-orange-200"
-        }`}
-      >
+  {/* Header */}
+<div
+  className={`relative z-10 flex flex-col sm:flex-row gap-3 sm:gap-0 sm:items-center sm:justify-between px-3 md:px-5 py-3 border-b backdrop-blur-xl ${
+    isDark
+      ? "bg-zinc-900/70 border-orange-500/10"
+      : "bg-orange-50 border-orange-200"
+  }`}
+>
 
         {/* Left Section */}
         <div className="flex items-center gap-4">
@@ -73,7 +73,7 @@ const CodeEditor = ({ language }) => {
               rotate: 10,
               scale: 1.08
             }}
-            className="relative w-11 h-11 rounded-2xl bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-white shadow-[0_0_20px_rgba(255,140,0,0.4)]"
+            className="relative w-9 h-9 md:w-11 md:h-11 rounded-xl md:rounded-2xl bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-white shadow-[0_0_20px_rgba(255,140,0,0.4)]"
           >
 
             <div className="absolute inset-0 rounded-2xl bg-orange-500 blur-xl opacity-40"></div>
@@ -89,7 +89,7 @@ const CodeEditor = ({ language }) => {
           <div>
 
             <h2
-              className={`text-lg font-bold tracking-wide ${
+              className={`text-sm md:text-lg font-bold tracking-wide ${
                 isDark
                   ? "text-white"
                   : "text-black"
@@ -183,12 +183,12 @@ const CodeEditor = ({ language }) => {
               enabled: false
             },
 
-            fontSize: 16,
+           fontSize: 14,
 
             fontFamily:
               "'JetBrains Mono', 'Fira Code', monospace",
 
-            lineHeight: 28,
+            lineHeight: 24,
 
             fontLigatures: true,
 

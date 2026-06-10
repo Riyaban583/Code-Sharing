@@ -46,7 +46,7 @@ const ControlPanel = () => {
       initial={{ y: -40, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.7 }}
-      className={`relative z-20 h-20 px-6 flex items-center justify-between border-b backdrop-blur-2xl ${
+      className={`relative z-20 px-3 md:px-6 py-3 flex flex-col lg:flex-row gap-3 lg:gap-0 lg:items-center lg:justify-between border-b backdrop-blur-2xl ${
         isDark
           ? "bg-black/60 border-orange-500/10"
           : "bg-white/70 border-orange-200"
@@ -54,8 +54,7 @@ const ControlPanel = () => {
     >
 
       {/* Left Section */}
-      <div className="flex items-center gap-5">
-
+     <div className="flex flex-wrap items-center gap-2 md:gap-5 w-full lg:w-auto">
         {/* Language Dropdown */}
         <motion.div
           whileHover={{ scale: 1.03 }}
@@ -75,7 +74,7 @@ const ControlPanel = () => {
             onChange={(e) =>
               setLanguage(e.target.value)
             }
-            className={`relative z-10 pl-12 pr-6 py-3 rounded-2xl border outline-none text-sm font-semibold transition-all duration-300 backdrop-blur-xl ${
+  className={`relative z-10 pl-12 pr-4 py-3 w-full md:w-auto rounded-2xl border outline-none text-sm font-semibold transition-all duration-300 backdrop-blur-xl ${
               isDark
                 ? "bg-zinc-900/80 text-white border-orange-500/20 focus:border-orange-500"
                 : "bg-white text-black border-orange-200"
@@ -107,7 +106,7 @@ const ControlPanel = () => {
             scale: 0.95
           }}
           onClick={resetSnippet}
-          className={`flex items-center gap-2 px-5 py-3 rounded-2xl text-sm font-semibold transition-all duration-300 ${
+          className={`flex items-center justify-center gap-2 px-4 md:px-5 py-3 text-xs md:text-sm font-semibold transition-all duration-300 ${
             isDark
               ? "bg-zinc-900/80 text-white hover:bg-zinc-800 border border-orange-500/10"
               : "bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -138,7 +137,7 @@ const ControlPanel = () => {
 
       {/* Right Section */}
       <div
-        className={`flex items-center p-1.5 rounded-2xl backdrop-blur-xl ${
+  className={`w-full lg:w-auto flex items-center justify-center p-1.5 rounded-2xl overflow-x-auto ${
           isDark
             ? "bg-zinc-900/80 border border-orange-500/10"
             : "bg-gray-100"
@@ -152,7 +151,7 @@ const ControlPanel = () => {
           onClick={() =>
             setViewMode("editor")
           }
-          className={`px-5 py-3 rounded-xl flex items-center gap-2 text-sm font-semibold transition-all duration-300 ${
+          className={`px-3 md:px-5 py-3 rounded-xl flex items-center gap-2 text-xs md:text-sm font-semibold transition-all duration-300 ${
             viewMode === "editor"
               ? "bg-gradient-to-r from-orange-400 to-orange-600 text-white shadow-[0_0_20px_rgba(255,140,0,0.5)]"
               : isDark
@@ -174,7 +173,7 @@ const ControlPanel = () => {
           onClick={() =>
             setViewMode("split")
           }
-          className={`px-5 py-3 rounded-xl flex items-center gap-2 text-sm font-semibold transition-all duration-300 ${
+          className={`hidden lg:flex px-3 md:px-5 py-3 rounded-xl flex items-center gap-2 text-xs md:text-sm font-semibold transition-all duration-300 ${
             viewMode === "split"
               ? "bg-gradient-to-r from-orange-400 to-orange-600 text-white shadow-[0_0_20px_rgba(255,140,0,0.5)]"
               : isDark
@@ -196,7 +195,7 @@ const ControlPanel = () => {
           onClick={() =>
             setViewMode("preview")
           }
-          className={`px-5 py-3 rounded-xl flex items-center gap-2 text-sm font-semibold transition-all duration-300 ${
+          className={`px-3 md:px-5 py-3 rounded-xl flex items-center gap-2 text-xs md:text-sm font-semibold transition-all duration-300 ${
             viewMode === "preview"
               ? "bg-gradient-to-r from-orange-400 to-orange-600 text-white shadow-[0_0_20px_rgba(255,140,0,0.5)]"
               : isDark

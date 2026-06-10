@@ -37,7 +37,7 @@ const Navbar = () => {
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className={`sticky top-0 z-50 px-6 py-4 flex items-center justify-between border-b backdrop-blur-2xl ${
+      className={`sticky top-0 z-50 px-3 md:px-6 py-3 flex flex-col lg:flex-row gap-3 lg:gap-0 lg:items-center lg:justify-between border-b backdrop-blur-2xl ${
         isDark
           ? "bg-black/70 border-orange-500/10"
           : "bg-white/70 border-orange-200"
@@ -45,8 +45,7 @@ const Navbar = () => {
     >
 
       {/* Left Section */}
-      <div className="flex items-center gap-8">
-
+      <div className="flex items-center justify-between w-full lg:w-auto gap-3">
         {/* Logo */}
         <Link
           to="/"
@@ -59,7 +58,7 @@ const Navbar = () => {
               rotate: 10,
               scale: 1.08
             }}
-            className="relative w-12 h-12 rounded-2xl bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-white shadow-[0_0_25px_rgba(255,140,0,0.5)]"
+            className="relative w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-white shadow-[0_0_25px_rgba(255,140,0,0.5)]"
           >
 
             {/* Glow */}
@@ -72,13 +71,11 @@ const Navbar = () => {
           {/* Text */}
           <div>
 
-            <h1
-              className={`text-2xl font-black tracking-wide ${
-                isDark
-                  ? "text-white"
-                  : "text-black"
-              }`}
-            >
+           <h1
+  className={`text-lg md:text-2xl font-black tracking-wide ${
+    isDark ? "text-white" : "text-black"
+  }`}
+>
 
               Note
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
@@ -87,9 +84,9 @@ const Navbar = () => {
 
             </h1>
 
-            <p className="text-xs text-orange-400 tracking-widest uppercase">
-              Futuristic Code Editor
-            </p>
+            <p className="hidden sm:block text-xs text-orange-400 tracking-widest uppercase">
+  Futuristic Code Editor
+</p>
 
           </div>
 
@@ -136,7 +133,7 @@ const Navbar = () => {
       </div>
 
       {/* Right Section */}
-      <div className="flex items-center gap-3">
+     <div className="w-full lg:w-auto flex flex-wrap items-center justify-center gap-2">
 
         {/* Notifications */}
         <motion.button
@@ -146,7 +143,7 @@ const Navbar = () => {
           whileTap={{
             scale: 0.95
           }}
-          className={`p-3 rounded-2xl transition-all duration-300 ${
+          className={`p-2 md:p-3 rounded-xl md:rounded-2xl transition-all duration-300 ${
             isDark
               ? "bg-zinc-900/80 text-orange-400 hover:bg-zinc-800"
               : "bg-orange-50 text-orange-600"
@@ -167,7 +164,7 @@ const Navbar = () => {
             scale: 0.95
           }}
           onClick={handleThemeToggle}
-          className={`p-3 rounded-2xl transition-all duration-300 ${
+          className={`p-2 md:p-3 rounded-xl md:rounded-2xl transition-all duration-300 ${
             isDark
               ? "bg-zinc-900/80 text-orange-400 hover:bg-zinc-800"
               : "bg-orange-50 text-orange-600"
@@ -192,7 +189,7 @@ const Navbar = () => {
             scale: 0.95
           }}
           onClick={toggleAIPanel}
-          className={`px-5 py-3 rounded-2xl flex items-center gap-2 transition-all duration-300 font-semibold ${
+          className={`px-2 md:px-5 py-2 md:py-3 rounded-xl md:rounded-2xl text-xs md:text-sm flex items-center gap-2 transition-all duration-300 font-semibold ${
             isDark
               ? "bg-zinc-900/80 text-orange-400 hover:bg-zinc-800"
               : "bg-orange-50 text-orange-600"
@@ -200,8 +197,9 @@ const Navbar = () => {
         >
 
           <Sparkles size={18} />
-
-          AI Assistant
+          <span className="hidden md:inline">
+  AI Assistant
+</span>
 
         </motion.button>
 
@@ -218,7 +216,7 @@ const Navbar = () => {
             setShareModalOpen(true)
           }
           disabled={isShared}
-          className={`px-5 py-3 rounded-2xl flex items-center gap-2 text-white font-semibold transition-all duration-300 ${
+          className={`px-2 md:px-5 py-2 md:py-3 rounded-xl md:rounded-2xl text-xs md:text-sm flex items-center gap-2 text-white font-semibold transition-all duration-300 ${
             isShared
               ? "bg-gray-500 cursor-not-allowed"
               : "bg-gradient-to-r from-orange-400 to-orange-600 hover:from-orange-500 hover:to-orange-700"
@@ -227,7 +225,9 @@ const Navbar = () => {
 
           <Share2 size={18} />
 
-          {isShared ? "Shared" : "Share"}
+         <span className="hidden md:inline">
+  {isShared ? "Shared" : "Share"}
+</span>
 
         </motion.button>
 
@@ -239,7 +239,7 @@ const Navbar = () => {
           whileTap={{
             scale: 0.95
           }}
-          className="w-12 h-12 rounded-2xl bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-white shadow-[0_0_20px_rgba(255,140,0,0.4)]"
+          className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-white shadow-[0_0_20px_rgba(255,140,0,0.4)]"
         >
 
           <User size={20} />

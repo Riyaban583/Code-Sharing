@@ -228,7 +228,7 @@ const LivePreview = () => {
       whileHover={{
         scale: 1.005
       }}
-      className={`relative flex flex-col h-full rounded-[30px] overflow-hidden border backdrop-blur-2xl shadow-[0_0_50px_rgba(255,140,0,0.15)] ${
+      className={`relative flex flex-col h-full rounded-[24px] md:rounded-[30px] overflow-hidden border backdrop-blur-2xl shadow-[0_0_50px_rgba(255,140,0,0.15)] ${
         isDark
           ? "bg-zinc-950/90 border-orange-500/20"
           : "bg-white border-orange-200"
@@ -243,7 +243,7 @@ const LivePreview = () => {
 
       {/* HEADER */}
       <div
-        className={`relative z-10 h-20 px-5 flex items-center justify-between border-b backdrop-blur-xl ${
+        className={`relative z-10 px-3 md:px-5 py-3 flex flex-col sm:flex-row gap-3 sm:gap-0 sm:items-center sm:justify-between border-b backdrop-blur-xl ${
           isDark
             ? "bg-zinc-900/70 border-orange-500/10"
             : "bg-orange-50 border-orange-200"
@@ -270,7 +270,7 @@ const LivePreview = () => {
               rotate: 10,
               scale: 1.08
             }}
-            className="w-11 h-11 rounded-2xl bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-white shadow-[0_0_20px_rgba(255,140,0,0.4)]"
+            className="w-9 h-9 md:w-11 md:h-11 rounded-xl md:rounded-2xl bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-white shadow-[0_0_20px_rgba(255,140,0,0.4)]"
           >
 
             {isWebProject ? (
@@ -285,7 +285,7 @@ const LivePreview = () => {
           <div>
 
             <h2
-              className={`text-lg font-bold ${
+              className={`text-sm md:text-lg font-bold ${
                 isDark
                   ? "text-white"
                   : "text-black"
@@ -309,7 +309,7 @@ const LivePreview = () => {
         </div>
 
         {/* Right */}
-        <div className="flex items-center gap-3">
+       <div className="flex flex-wrap items-center gap-2 justify-start sm:justify-end">
 
           {/* Live Badge */}
           <div className="hidden md:flex items-center gap-2 px-4 py-2 rounded-xl bg-orange-500/10 border border-orange-500/20">
@@ -351,7 +351,7 @@ const LivePreview = () => {
             }}
             onClick={handleRun}
             disabled={isRunning}
-            className="flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-orange-400 to-orange-600 text-white rounded-2xl text-sm font-semibold transition-all duration-300"
+            className="flex items-center gap-2 px-3 py-2 text-xs md:text-sm md:px-5 md:py-3  bg-gradient-to-r from-orange-400 to-orange-600 text-white rounded-2xl text-sm font-semibold transition-all duration-300"
           >
 
             {isRunning ? (
@@ -387,7 +387,7 @@ const LivePreview = () => {
               scale: 0.95
             }}
             onClick={refreshPreview}
-            className={`p-3 rounded-2xl transition-all duration-300 ${
+            className={`p-2 md:p-3 rounded-xl md:rounded-2xl transition-all duration-300 ${
               isDark
                 ? "bg-zinc-900/80 text-gray-300 hover:bg-zinc-800"
                 : "bg-gray-100 text-gray-700"
@@ -409,10 +409,10 @@ const LivePreview = () => {
             onClick={
               togglePreviewFullscreen
             }
-            className={`p-3 rounded-2xl transition-all duration-300 ${
-              isDark
-                ? "bg-zinc-900/80 text-gray-300 hover:bg-zinc-800"
-                : "bg-gray-100 text-gray-700"
+              className={`hidden md:flex p-3 rounded-2xl ${
+    isDark
+      ? "bg-zinc-900/80 text-gray-300 hover:bg-zinc-800"
+      : "bg-gray-100 text-gray-700"
             }`}
           >
 
@@ -430,12 +430,10 @@ const LivePreview = () => {
 
       {/* OUTPUT */}
       <div
-        className={`flex-1 relative overflow-hidden ${
-          isDark
-            ? "bg-black"
-            : "bg-white"
-        }`}
-      >
+  className={`flex-1 relative overflow-hidden min-h-[220px] md:min-h-0 ${
+    isDark ? "bg-black" : "bg-white"
+  }`}
+>
 
         {/* Side Glow */}
         <div className="absolute left-0 top-0 w-[2px] h-full bg-gradient-to-b from-orange-500/40 via-transparent to-orange-500/40 z-10"></div>
@@ -488,7 +486,7 @@ const LivePreview = () => {
         ) : (
 
           <div
-            className={`h-full p-6 font-mono text-sm whitespace-pre-wrap ${
+  className={`h-full p-3 md:p-6 font-mono text-xs md:text-sm whitespace-pre-wrap ${
               isDark
                 ? "bg-black text-green-400"
                 : "bg-white text-black"
