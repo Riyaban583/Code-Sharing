@@ -35,6 +35,7 @@ function Register() {
   // ====================================
   // HANDLE REGISTER
   // ====================================
+  const API_URL = import.meta.env.VITE_API_URL;
   const handleRegister = async (e) => {
 
     e.preventDefault();
@@ -43,9 +44,8 @@ function Register() {
 
       setLoading(true);
 
-      const response = await fetch(
-
-        "http://localhost:5000/api/auth/register",
+     const response = await fetch(
+  `${API_URL}/api/auth/register`,
 
         {
 

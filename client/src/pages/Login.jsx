@@ -7,6 +7,7 @@ import {
 } from "react";
 
 function Login() {
+
   const { theme, setTheme } = useEditorStore();
 
   const navigate = useNavigate();
@@ -28,6 +29,7 @@ function Login() {
   // ====================================
   // HANDLE LOGIN
   // ====================================
+  const API_URL = import.meta.env.VITE_API_URL;
   const handleLogin = async (e) => {
 
     e.preventDefault();
@@ -35,10 +37,8 @@ function Login() {
     try {
 
       setLoading(true);
-
-      const response = await fetch(
-
-        "http://localhost:5000/api/auth/login",
+const response = await fetch(
+  `${API_URL}/api/auth/login`,
 
         {
 
