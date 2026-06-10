@@ -53,6 +53,7 @@ const ShareModal = () => {
   // ====================================
   // SHARE CODE
   // ====================================
+  const API_URL = import.meta.env.VITE_API_URL;
   const handleShare = async () => {
 
     try {
@@ -60,10 +61,9 @@ const ShareModal = () => {
       setLoading(true);
 
       const response = await fetch(
-        "http://localhost:5000/api/code/save",
-        {
-          method: "POST",
-
+  `${API_URL}/api/code/save`,
+  {
+    method: "POST",
           headers: {
             "Content-Type":
               "application/json",
@@ -86,8 +86,8 @@ const ShareModal = () => {
       const data =
         await response.json();
 
-      const shareUrl =
-        `http://localhost:5173/s/${data._id}`;
+     const shareUrl =
+  `${window.location.origin}/s/${data._id}`;
 
       setShareData({
         url: shareUrl,
