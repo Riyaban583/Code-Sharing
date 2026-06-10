@@ -27,6 +27,7 @@ const Home = () => {
   const { id } = useParams();
 
   const isDark = theme === "vs-dark";
+  const API_URL = import.meta.env.VITE_API_URL;
 
   // Fetch shared snippet
   useEffect(() => {
@@ -35,8 +36,8 @@ const Home = () => {
     const fetchSnippet = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/code/${id}`
-        );
+  `${API_URL}/api/code/${id}`
+);
 
         if (!response.ok) {
           throw new Error("Snippet not found");

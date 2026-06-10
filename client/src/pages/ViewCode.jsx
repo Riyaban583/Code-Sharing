@@ -19,13 +19,14 @@ const ViewCode = () => {
   const [loading, setLoading] = useState(true);
 
   const isDark = theme === "vs-dark";
+  const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchCode = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/code/${id}`
-        );
+  `${API_URL}/api/code/${id}`
+);
 
         if (!response.ok) {
           throw new Error("Snippet not found");
